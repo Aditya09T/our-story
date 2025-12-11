@@ -3,17 +3,20 @@
     {
       "title":"First Proposal ❤️",
       "date":"3 March 2022",
-      "desc":"Puchu proposed Golu at 10:30 AM"
+      "desc":"Puchu proposed Golu at 10:30 AM",
+      "image": "images/proposal.jpg"
     },
     {
       "title":"Class 12 Together 📚",
       "date":"2024",
-      "desc":"Science stream, same school"
+      "desc":"Science stream, same school",
+      "image": "images/school.jpg"
     },
     {
       "title":"Long Distance Begins 💕",
       "date":"2024",
-      "desc":"ICFAI & NFSU but hearts together"
+      "desc":"ICFAI & NFSU but hearts together",
+      "image": "images/distance.jpg"
     }
   ]
 }
