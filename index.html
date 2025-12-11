@@ -1,37 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Aditya ❤️ Taniya</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aditya ❤️ Taniya — Our Story</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Login -->
-  <div id="login" class="center">
-    <div class="login-box">
+  <!-- PASSWORD GATE (nothing else visible until correct) -->
+  <div id="gate" class="gate">
+    <div class="gate-card">
       <h2>💖 Private Space</h2>
-      <input type="password" id="password" placeholder="Enter Password" />
-      <button onclick="checkPassword()">Enter</button>
-      <p id="error"></p>
+      <p>Enter password to open our story</p>
+      <input id="pwInput" type="password" placeholder="Password" />
+      <button id="pwBtn">Enter</button>
+      <p id="pwError" class="error" aria-live="polite"></p>
     </div>
   </div>
 
-  <!-- Main Content -->
-  <div id="content" class="hidden">
-    <h1 class="main-title">Aditya ❤️ Taniya</h1>
-    <p class="subtitle">Our Beautiful Journey</p>
+  <!-- MAIN CONTENT -->
+  <main id="app" class="app hidden">
+    <header class="header">
+      <div class="title-wrap">
+        <h1 class="title">Aditya ❤️ Taniya</h1>
+        <p class="subtitle">Five years and counting — our little universe</p>
+      </div>
+    </header>
 
-    <div class="buttons">
-      <div class="section-btn" onclick="openSection('proposal')">💍 Proposal</div>
-      <div class="section-btn" onclick="openSection('school')">🎓 School Life</div>
-      <div class="section-btn" onclick="openSection('memories')">❤️ Memories</div>
-    </div>
+    <nav class="nav">
+      <button class="nav-btn" data-key="proposal">💍 Our Proposal</button>
+      <button class="nav-btn" data-key="school">🎓 School Life</button>
+      <button class="nav-btn" data-key="memories">❤️ Memories</button>
+      <!-- add more buttons if you add more keys in sections.js -->
+    </nav>
 
-    <div id="display-area"></div>
-  </div>
+    <section id="content" class="content">
+      <div id="sectionContainer" class="section-container">
+        <!-- dynamic content inserted here -->
+        <div class="hint">Click a section above to open its story.</div>
+      </div>
+    </section>
 
-  <script src="sections.js"></script>
-  <script src="script.js"></script>
+    <footer class="footer">Private link • For Golu & Puchu only</footer>
+  </main>
+
+<script src="sections.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
