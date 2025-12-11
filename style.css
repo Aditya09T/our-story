@@ -33,4 +33,19 @@ button{
   padding:15px;
   max-width:500px;
   border-radius:10px;
+  /* Add this to style.css */
+.event-img {
+  width: 100%;       /* Makes image fit inside the white box */
+  max-width: 400px;  /* Prevents it from getting too huge */
+  border-radius: 8px; /* Smooth corners */
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+
+.date {
+  color: #ff5c8a;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+}
+
