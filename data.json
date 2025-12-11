@@ -1,22 +1,28 @@
 {
-  "events":[
-    {
-      "title":"First Proposal ❤️",
-      "date":"3 March 2022",
-      "desc":"Puchu proposed Golu at 10:30 AM",
-      "image": "images/proposal.jpg"
-    },
-    {
-      "title":"Class 12 Together 📚",
-      "date":"2024",
-      "desc":"Science stream, same school",
-      "image": "images/school.jpg"
-    },
-    {
-      "title":"Long Distance Begins 💕",
-      "date":"2024",
-      "desc":"ICFAI & NFSU but hearts together",
-      "image": "images/distance.jpg"
-    }
-  ]
+"events": [
+{
+"title": "First Proposal ❤️",
+"date": "3 March 2022",
+"desc": "Puchu proposed Golu at 10:30 AM."
+},
+{
+"title": "Class 12 Together 📚",
+"date": "2024",
+"desc": "Science stream, same school."
+},
+{
+"title": "Long Distance Begins 💕",
+"date": "2024",
+"desc": "ICFAI & NFSU but hearts forever linked."
+}
+],
+
+
+"photos": ["first pic.jpg", "school pic 1.jpg", "school pic 2.jpg"],
+
+
+"videos": ["video1.mp4", "video2.mp4"],
+
+
+"journey": "From school days to long distance — every moment built our unbreakable bond. No matter the distance, our hearts stayed together, always beating for each other."
 }
