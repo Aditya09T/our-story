@@ -1,4 +1,3 @@
-// PASSWORD (change if needed)
 const PASSWORD = "Taniyaditya09";
 
 // UI refs
@@ -9,103 +8,128 @@ const pwError = document.getElementById('pwError');
 
 const app = document.getElementById('app');
 const container = document.getElementById('sectionContainer');
-const navButtons = document.querySelectorAll('.nav-btn');
+const nav = document.getElementById('nav');
 
-// show/hide app after pw
+const modal = document.getElementById('slideshowModal');
+const slideImg = document.getElementById('slideImg');
+const prevBtn = document.getElementById('prevSlide');
+const nextBtn = document.getElementById('nextSlide');
+const closeModal = document.getElementById('closeModal');
+const playPause = document.getElementById('playPause');
+const slideIndex = document.getElementById('slideIndex');
+
+let currentSlides = []; // array of image paths for modal
+let currentIndex = 0;
+let autoplayId = null;
+
+// password
 function checkPassword(){
   const v = pwInput.value.trim();
   if(v === PASSWORD){
     gate.style.display = 'none';
     app.classList.remove('hidden');
-    // optionally reveal a default section:
+    // optionally open first section automatically:
     // openSection('proposal');
   } else {
     pwError.textContent = 'Wrong password ❤️';
-    setTimeout(()=> pwError.textContent = '', 2500);
+    setTimeout(()=> pwError.textContent = '', 2200);
   }
 }
 pwBtn.addEventListener('click', checkPassword);
 pwInput.addEventListener('keydown', e => { if(e.key === 'Enter') checkPassword(); });
 
-// nav clicks
-navButtons.forEach(b => {
+// attach nav
+nav.querySelectorAll('.nav-btn').forEach(b=>{
   b.addEventListener('click', ()=> {
     const key = b.getAttribute('data-key');
     openSection(key);
-    // smooth scroll to top of section container
     container.scrollIntoView({behavior:'smooth'});
   });
 });
 
-// open and render a section
+// render a section
 function openSection(key){
   const data = SECTIONS[key];
   if(!data) return;
   container.innerHTML = ''; // clear
 
-  // create card
+  // large story card
   const card = document.createElement('article');
   card.className = 'story-card';
 
-  const h = document.createElement('h2');
-  h.innerText = data.title;
-  card.appendChild(h);
+  const h = document.createElement('h2'); h.innerText = data.title; card.appendChild(h);
+  const meta = document.createElement('div'); meta.className='meta'; meta.innerText = data.meta||''; card.appendChild(meta);
 
-  const meta = document.createElement('div');
-  meta.className = 'meta';
-  meta.innerText = data.meta || '';
-  card.appendChild(meta);
+  // for each story part, append paragraph then optionally an inline image
+  data.storyParts.forEach((para, i) => {
+    const pWrap = document.createElement('div'); pWrap.className='story-text';
+    const typed = document.createElement('div'); typed.className='type';
+    pWrap.appendChild(typed);
+    card.appendChild(pWrap);
 
-  const text = document.createElement('div');
-  text.className = 'story-text';
-  // We'll animate typing
-  const typed = document.createElement('div');
-  typed.className = 'type';
-  text.appendChild(typed);
-  card.appendChild(text);
+    // if a matching inline photo exists for this index, append it after typing
+    const inlinePhoto = (data.photosInline && data.photosInline[i]) ? data.photosInline[i] : null;
 
+    // animate typing then show inline image if present
+    typeText(typed, para, 18).then(()=>{
+      pWrap.style.opacity = 1;
+      pWrap.style.transform = 'translateY(0)';
+      if(inlinePhoto){
+        const img = document.createElement('img');
+        img.src = `images/${key}/${inlinePhoto}`;
+        img.alt = inlinePhoto;
+        img.className = 'inline-img';
+        img.style.maxWidth='560px';
+        img.style.margin='12px auto';
+        img.style.display='block';
+        img.style.borderRadius='10px';
+        card.appendChild(img);
+      }
+    });
+  });
+
+  // append card and slideshow controls
   container.appendChild(card);
 
-  // images/videos alternating inside content
-  const mediaGrid = document.createElement('div');
-  mediaGrid.className = 'grid';
+  // show slideshow gallery preview (thumbnails)
+  if(data.photosForSlideshow && data.photosForSlideshow.length){
+    const galleryTitle = document.createElement('h3'); galleryTitle.innerText = 'Gallery';
+    galleryTitle.style.marginTop='12px';
+    container.appendChild(galleryTitle);
 
-  // photos (path images/<key>/filename)
-  (data.photos||[]).forEach(fn => {
-    const img = document.createElement('img');
-    img.src = `images/${key}/${fn}`;
-    img.alt = fn;
-    img.loading = 'lazy';
-    mediaGrid.appendChild(img);
-  });
+    const grid = document.createElement('div'); grid.className='grid';
+    data.photosForSlideshow.forEach((fn, idx) => {
+      const img = document.createElement('img');
+      img.src = `images/${key}/${fn}`;
+      img.alt = fn;
+      img.loading = 'lazy';
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', ()=> openSlideshow(data.photosForSlideshow.map(x=>`images/${key}/${x}`), idx));
+      grid.appendChild(img);
+    });
+    container.appendChild(grid);
+  }
 
-  // videos
-  (data.videos||[]).forEach(fn => {
-    const v = document.createElement('video');
-    v.src = `videos/${key}/${fn}`;
-    v.controls = true;
-    v.playsInline = true;
-    mediaGrid.appendChild(v);
-  });
+  // videos (if any)
+  if(data.videos && data.videos.length){
+    const vidsTitle = document.createElement('h3'); vidsTitle.innerText = 'Videos'; vidsTitle.style.marginTop='12px';
+    container.appendChild(vidsTitle);
+    const vgrid = document.createElement('div'); vgrid.className='grid';
+    data.videos.forEach(fn=>{
+      const v = document.createElement('video');
+      v.src = `videos/${key}/${fn}`;
+      v.controls = true; v.playsInline = true;
+      v.style.borderRadius='12px';
+      vgrid.appendChild(v);
+    });
+    container.appendChild(vgrid);
+  }
 
-  // Append media below the text (you can rearrange)
-  container.appendChild(mediaGrid);
-
-  // reveal animations
-  setTimeout(()=> card.classList.add('show'), 40);
-
-  // typing effect for the story text with simple character animation
-  typeText(typed, data.story || '', 20).then(()=>{
-    text.classList.add('revealed');
-    // remove caret after typing finish
-    typed.style.borderRight = '0px';
-  });
-
-  // also attach intersection observer to reveal images on scroll
-  observeImages();
+  // reveal animation
+  setTimeout(()=> card.classList.add('show'), 60);
 }
 
-// simple typing helper
+// typing helper
 function typeText(el, txt, speed = 25){
   el.textContent = '';
   return new Promise(res=>{
@@ -115,42 +139,62 @@ function typeText(el, txt, speed = 25){
       i++;
       if(i >= txt.length){
         clearInterval(iv);
+        // remove caret shortly after
+        setTimeout(()=> el.style.borderRight='0px', 300);
         res();
       }
     }, speed);
   });
 }
 
-// reveal images/videos on scroll
-function observeImages(){
-  const opts = {root:null, rootMargin:'0px', threshold:0.15};
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(en=>{
-      if(en.isIntersecting){
-        en.target.classList.add('show');
-        io.unobserve(en.target);
-      }
-    });
-  },opts);
-
-  document.querySelectorAll('.grid img, .grid video').forEach(el=>{
-    el.style.opacity = 0;
-    el.style.transform = 'translateY(10px)';
-    // tiny CSS transition injection
-    el.style.transition = 'opacity .7s ease, transform .7s ease';
-    // observe
-    io.observe(el);
-    // when shown, set neutral styles via show
-    el.addEventListener('load', ()=>{ /* no-op */ });
-  });
-
-  // buttons to play video muted on click for preview (optional)
-  document.querySelectorAll('.grid video').forEach(v=>{
-    v.addEventListener('click', ()=> {
-      if(v.paused) v.play(); else v.pause();
-    });
-  });
+/* ---------- Slideshow modal ---------- */
+function openSlideshow(arrayOfPaths, startIndex=0){
+  currentSlides = arrayOfPaths.slice();
+  currentIndex = startIndex;
+  slideImg.src = currentSlides[currentIndex];
+  slideIndex.innerText = `${currentIndex+1} / ${currentSlides.length}`;
+  modal.classList.remove('hidden');
+  modal.style.display = 'flex';
+  stopAutoplay(); // ensure autoplay reset
 }
 
-// expose openSection (so nav btns can call externally)
-window.openSection = openSection;
+function closeSlideshow(){
+  modal.classList.add('hidden');
+  modal.style.display = 'none';
+  stopAutoplay();
+}
+
+function prevSlideFn(){
+  if(!currentSlides.length) return;
+  currentIndex = (currentIndex - 1 + currentSlides.length) % currentSlides.length;
+  slideImg.src = currentSlides[currentIndex];
+  slideIndex.innerText = `${currentIndex+1} / ${currentSlides.length}`;
+}
+function nextSlideFn(){
+  if(!currentSlides.length) return;
+  currentIndex = (currentIndex + 1) % currentSlides.length;
+  slideImg.src = currentSlides[currentIndex];
+  slideIndex.innerText = `${currentIndex+1} / ${currentSlides.length}`;
+}
+function startAutoplay(){
+  if(autoplayId) return;
+  playPause.textContent = 'Pause';
+  autoplayId = setInterval(()=> nextSlideFn(), 3000);
+}
+function stopAutoplay(){
+  if(autoplayId){ clearInterval(autoplayId); autoplayId = null; playPause.textContent = 'Play'; }
+}
+
+// modal event listeners
+prevBtn && prevBtn.addEventListener('click', prevSlideFn);
+nextBtn && nextBtn.addEventListener('click', nextSlideFn);
+closeModal && closeModal.addEventListener('click', closeSlideshow);
+playPause && playPause.addEventListener('click', ()=> {
+  if(autoplayId) stopAutoplay(); else startAutoplay();
+});
+document.addEventListener('keydown', e => {
+  if(!modal || modal.classList.contains('hidden')) return;
+  if(e.key === 'ArrowLeft') prevSlideFn();
+  if(e.key === 'ArrowRight') nextSlideFn();
+  if(e.key === 'Escape') closeSlideshow();
+});
