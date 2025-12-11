@@ -10,7 +10,7 @@ const SECTIONS = {
       "They met in Class 8, became close friends in Class 9 and then became partners in Class 10. They studied together, laughed together, and supported each other.",
       "After Class 10, they continued together into Class 11–12 (science stream) at Bishalgarh English Medium HS School, completed Class 12 in March 2024, then moved forward with college and careers while staying by each other's side."
     ],
-    photosForSlideshow: ["1.jpg","2.jpg","3.jpg"], // these live in images/proposal/
+    photosForSlideshow: ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg"], // these live in images/proposal/
     photosInline: ["1.jpg"], // photos to show between paragraphs (by filename)
     videos: []
   },
@@ -39,3 +39,4 @@ const SECTIONS = {
     videos: ["memclip1.mp4"] // optional - upload to videos/memories/
   }
 };
+
