@@ -22,7 +22,7 @@ const SECTIONS = {
       "We studied together from Class 9 through Class 12, sharing notes, late-night study sessions and small celebrations after exams.",
       "Classmates became family — we helped each other in projects, practicals and board preparation."
     ],
-    photosForSlideshow: ["school1.jpg","school2.jpg"], // upload to images/school/
+    photosForSlideshow: ["9.jpg","10.jpg","l1.jpg","l2.jpg","15.jpg","16.jpg"], // upload to images/school/
     photosInline: [],
     videos: []
   },
@@ -34,9 +34,10 @@ const SECTIONS = {
       "This section holds small moments: college hangouts, travel snaps, and simple afternoons together.",
       "Each photo reminds us of a story, and every video is a little piece of our life together."
     ],
-    photosForSlideshow: ["7.jpg","8.jpg"], // upload to images/memories/
+    photosForSlideshow: ["7.jpg","8.jpg","13.jpg","14.jpg"], // upload to images/memories/
     photosInline: [],
-    videos: ["memclip1.mp4"] // optional - upload to videos/memories/
+    videos: ["4.mp4","5.mp4"] // optional - upload to videos/memories/
   }
 };
+
 
