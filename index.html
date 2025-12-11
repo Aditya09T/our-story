@@ -1,53 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
   <title>Aditya ❤️ Taniya</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Preloader (brief flash) -->
-  <div id="preloader" class="preloader hidden"></div>
 
-  <!-- LOGIN -->
+  <!-- Login -->
   <div id="login" class="center">
     <div class="login-box">
       <h2>💖 Private Space</h2>
-      <input id="password" type="password" placeholder="Enter Password" />
-      <div class="row">
-        <button id="enterBtn">Enter</button>
-      </div>
-      <p id="error" class="error"></p>
+      <input type="password" id="password" placeholder="Enter Password" />
+      <button onclick="checkPassword()">Enter</button>
+      <p id="error"></p>
     </div>
   </div>
 
-  <!-- CONTENT (hidden until correct password) -->
+  <!-- Main Content -->
   <div id="content" class="hidden">
-    <header class="site-header">
-      <h1 class="brand">Aditya ❤️ Taniya</h1>
-      <p class="sub">Our beautiful journey — together forever</p>
-    </header>
+    <h1 class="main-title">Aditya ❤️ Taniya</h1>
+    <p class="subtitle">Our Beautiful Journey</p>
 
-    <main class="main-wrap">
-      <section class="hero">
-        <div class="buttons">
-          <button class="big-btn" data-target="proposal">💍 Proposal</button>
-          <button class="big-btn" data-target="school">🎓 School Life</button>
-          <button class="big-btn" data-target="memories">✨ Memories</button>
-        </div>
-      </section>
+    <div class="buttons">
+      <div class="section-btn" onclick="openSection('proposal')">💍 Proposal</div>
+      <div class="section-btn" onclick="openSection('school')">🎓 School Life</div>
+      <div class="section-btn" onclick="openSection('memories')">❤️ Memories</div>
+    </div>
 
-      <nav class="section-tabs">
-        <button class="tab-btn active" data-tab="story">Story</button>
-        <button class="tab-btn" data-tab="photos">Photos</button>
-        <button class="tab-btn" data-tab="videos">Videos</button>
-      </nav>
-
-      <section id="display-area" class="display-area"></section>
-    </main>
+    <div id="display-area"></div>
   </div>
 
+  <script src="sections.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
