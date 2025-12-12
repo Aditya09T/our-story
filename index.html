@@ -1,11 +1,40 @@
-<main id="app" class="hidden">
-        <h1 class="title">Aditya ❤️ Taniya</h1>
-                <div id="countdown" class="countdown"></div>
-                <div class="menu">
-            <button onclick="openSection('proposal')">💍 Proposal</button>
-            <button onclick="openSection('school')">🏫 School Days</button>
-            <button onclick="openSection('memory')">📸 Memories</button>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aditya ❤️ Taniya — Our Story</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <div id="display-area"></div>
-    </main>
+    <div id="loader">
+        <div class="heart">❤️</div>
+    </div>
+
+    <div id="login" class="hidden">
+        <div class="login-box">
+            <h2>❤️ Private Space</h2>
+            <input id="password" type="password" placeholder="Enter Password">
+            <button onclick="checkPassword()">Enter</button>
+            <p id="error"></p>
+        </div>
+    </div>
+
+    <main id="app" class="hidden">
+        <h1 class="title">Aditya ❤️ Taniya</h1>
+        <div id="countdown" class="countdown"></div> 
+
+        <div class="menu">
+            <button onclick="openSection('proposal')">💍 Proposal</button>
+            <button onclick="openSection('school')">🏫 School Days</button>
+            <button onclick="openSection('memory')">📸 Memories</button>
+            <button onclick="openSection('song')">🎧 Our Song</button>
+        </div>
+
+        <div id="display-area"></div>
+    </main>
+
+    <script src="sections.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
