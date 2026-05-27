@@ -943,15 +943,21 @@
     margin-bottom: 8px;
   }
   .date-when {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--rose);
     margin-bottom: 6px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: normal;
+    font-weight: 400;
   }
   .date-countdown {
-    font-size: 0.8rem;
-    color: rgba(249,232,236,0.4);
-    font-style: italic;
+    font-size: 0.82rem;
+    color: rgba(249,232,236,0.65);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.3px;
   }
 
   .upcoming-badge {
@@ -2062,17 +2068,20 @@ function startCounter() { updateCounter(); }
 // SPECIAL DATES
 // ============================================================
 const SPECIAL_DATES = [
-  { emoji:'🎂', name:"Aditya's Birthday", month: CONFIG.adityaBirthday.month, day: CONFIG.adityaBirthday.day },
   { emoji:'🎂', name:"Taniya's Birthday", month: CONFIG.taniyaBirthday.month, day: CONFIG.taniyaBirthday.day },
+  { emoji:'🎂', name:"Aditya's Birthday", month: CONFIG.adityaBirthday.month, day: CONFIG.adityaBirthday.day },
   { emoji:'💍', name:"Our Anniversary", month: 2, day: 6, note:"6 March 2022 · 10:30 AM" },
   { emoji:'🌹', name:"Rose Day", month: 1, day: 7, note:"Valentine's Week" },
+  { emoji:'💋', name:"Kiss Day", month: 1, day: 13, note:"Valentine's Week" },
+  { emoji:'❤️', name:"Valentine's Day", month: 1, day: 14 },
   { emoji:'🍫', name:"Chocolate Day", month: 1, day: 9, note:"Valentine's Week" },
   { emoji:'🧸', name:"Teddy Day", month: 1, day: 10, note:"Valentine's Week" },
   { emoji:'🌷', name:"Propose Day", month: 1, day: 8, note:"Valentine's Week" },
   { emoji:'🤝', name:"Promise Day", month: 1, day: 11, note:"Valentine's Week" },
-  { emoji:'❤️', name:"Valentine's Day", month: 1, day: 14 },
   { emoji:'👫', name:"Girlfriend Day", month: 7, day: 1, note:"1st August" },
   { emoji:'👑', name:"Boyfriend Day", month: 9, day: 3, note:"3rd October" },
+  { emoji:'♀️', name:"International Women's Day", month: 2, day: 8, note:"8 March" },
+  { emoji:'💐', name:"Wife Appreciation Day", month: 8, day: 20, note:"20 September" },
 ];
 
 function buildSpecialDates() {
@@ -2131,6 +2140,24 @@ const WISHES = {
     occasion:'Happy Birthday, Taniya! 🎉',
     text:'Aditya\'s favorite person is celebrating today! Wishing you endless joy, laughter, and all the love you deserve. You make every day brighter. 💗',
     check: d => d.getMonth() === CONFIG.taniyaBirthday.month && d.getDate() === CONFIG.taniyaBirthday.day
+  },
+  kissDay: {
+    emoji:'💋',
+    occasion:'Happy Kiss Day! 💋',
+    text:'The most romantic day of Valentine's Week — today is all about the sweetest moments between you two. 💗',
+    check: d => d.getMonth() === 1 && d.getDate() === 13
+  },
+  womenDay: {
+    emoji:'♀️',
+    occasion:'Happy Women's Day, Taniya! 🌸',
+    text:'To the most amazing woman in Aditya's world — today the whole world celebrates strong, beautiful women. And you are absolutely one of them. 💗',
+    check: d => d.getMonth() === 2 && d.getDate() === 8
+  },
+  wifeDay: {
+    emoji:'💐',
+    occasion:'Happy Wife Appreciation Day! 💐',
+    text:'Today is a reminder of just how much you mean to each other. Every day together is a blessing. 💕',
+    check: d => d.getMonth() === 8 && d.getDate() === 20
   },
   girlfriendDay: {
     emoji:'👫',
