@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya ❤️ Taniya — Our Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #e8758a;
+    --blush: #f5c6d0;
+    --deep: #2a0a14;
+    --wine: #7c2d3e;
+    --glow: #ff9fb5;
+    --cream: #fff5f7;
+    --glass: rgba(255,255,255,0.08);
+    --glass-border: rgba(255,180,200,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: #0d0208;
+    color: #f9e8ec;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--rose), transparent);
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-trail {
+    position: fixed;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--blush);
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    transition: all 0.2s ease;
+  }
+
+  /* ============ LOCK SCREEN ============ */
+  #lockScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 30% 50%, #3d0a1a 0%, #0d0208 60%, #1a0510 100%);
+  }
+
+  .lock-bg-hearts {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .lock-bg-hearts span {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.07;
+    animation: floatUp 8s linear infinite;
+  }
+
+  .lock-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(232,117,138,0.3);
+    border-radius: 28px;
+    padding: 60px 50px;
+    width: min(420px, 90vw);
+    text-align: center;
+    box-shadow: 0 0 80px rgba(232,117,138,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+    animation: cardReveal 1s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  @keyframes cardReveal {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .lock-heart {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 20px;
+    animation: heartPulse 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(232,117,138,0.8));
+  }
+
+  @keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  .lock-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    color: var(--blush);
+    margin-bottom: 6px;
+    text-shadow: 0 0 30px rgba(232,117,138,0.5);
+  }
+
+  .lock-sub {
+    font-size: 0.95rem;
+    color: rgba(249,232,236,0.5);
+    margin-bottom: 36px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .lock-input-wrap {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  #passwordInput {
+    width: 100%;
+    padding: 16px 50px 16px 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(232,117,138,0.3);
+    border-radius: 14px;
+    color: #f9e8ec;
+    font-size: 1.1rem;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 3px;
+    outline: none;
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  #passwordInput:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 20px rgba(232,117,138,0.2);
+    background: rgba(255,255,255,0.08);
+  }
+
+  #passwordInput::placeholder { letter-spacing: 1px; opacity: 0.4; }
+
+  .lock-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--wine), var(--rose));
+    border: none;
+    border-radius: 14px;
+    color: white;
+    font-size: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(232,117,138,0.3);
+  }
+
+  .lock-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(232,117,138,0.5);
+  }
+
+  .lock-error {
+    color: #ff6b8a;
+    font-size: 0.85rem;
+    margin-top: 12px;
+    height: 20px;
+    transition: all 0.3s;
+    opacity: 0;
+  }
+  .lock-error.show { opacity: 1; }
+
+  .shake { animation: shake 0.5s ease; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%,60% { transform: translateX(-8px); }
+    40%,80% { transform: translateX(8px); }
+  }
+
+  /* ============ SPECIAL WISH OVERLAY ============ */
+  #wishOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 8888;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13,2,8,0.92);
+    backdrop-filter: blur(10px);
+  }
+  #wishOverlay.active { display: flex; }
+
+  .wish-card {
+    background: linear-gradient(135deg, rgba(124,45,62,0.4), rgba(232,117,138,0.15));
+    border: 1px solid rgba(232,117,138,0.4);
+    border-radius: 28px;
+    padding: 60px 50px;
+    max-width: 500px;
+    width: 90vw;
+    text-align: center;
+    box-shadow: 0 0 100px rgba(232,117,138,0.2);
+    animation: wishReveal 0.8s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  @keyframes wishReveal {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .wish-emoji { font-size: 4rem; display: block; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+  .wish-occasion { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--rose); margin-bottom: 16px; }
+  .wish-text { font-size: 1.1rem; line-height: 1.8; color: rgba(249,232,236,0.85); margin-bottom: 30px; }
+  .wish-close {
+    padding: 12px 32px;
+    background: linear-gradient(135deg, var(--wine), var(--rose));
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 1px;
+  }
+
+  /* ============ MAIN SITE ============ */
+  #mainSite { display: none; }
+  #mainSite.visible { display: block; }
+
+  /* Floating hearts background */
+  .hearts-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .hearts-bg span {
+    position: absolute;
+    bottom: -20px;
+    font-size: 1rem;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.5); }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.15; }
+    100% { opacity: 0; transform: translateY(-100vh) rotate(360deg) scale(1.2); }
+  }
+
+  /* ============ NAVIGATION ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(13,2,8,0.9), transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--blush);
+    text-shadow: 0 0 20px rgba(232,117,138,0.5);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-links a {
+    color: rgba(249,232,236,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: all 0.3s;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--rose);
+    background: rgba(232,117,138,0.1);
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .hamburger span {
+    width: 24px; height: 2px;
+    background: var(--blush);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links {
+      position: fixed;
+      top: 0; right: -100%;
+      height: 100vh;
+      width: 280px;
+      background: rgba(13,2,8,0.97);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 80px 30px 30px;
+      gap: 4px;
+      transition: right 0.4s cubic-bezier(0.16,1,0.3,1);
+      backdrop-filter: blur(20px);
+      border-left: 1px solid rgba(232,117,138,0.2);
+    }
+    .nav-links.open { right: 0; }
+    .nav-links a { font-size: 1rem; padding: 12px 20px; width: 100%; }
+    nav { padding: 16px 24px; }
+  }
+
+  /* ============ HERO SECTION ============ */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 30% 40%, #3d0a1a 0%, #0d0208 50%, #1a051a 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px 20px;
+  }
+
+  .hero-date {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+
+  .hero-names {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 1;
+    background: linear-gradient(135deg, #f5c6d0, #e8758a, #c94d6d, #f5c6d0);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite, fadeUp 1s ease 0.5s both;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 40px rgba(232,117,138,0.3));
+  }
+
+  @keyframes gradientShift {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero-heart {
+    font-size: 2rem;
+    animation: heartPulse 1.5s ease-in-out infinite, fadeUp 1s ease 0.6s both;
+    display: block;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 0 15px rgba(232,117,138,0.8));
+  }
+
+  .hero-subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    color: rgba(245,198,208,0.8);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+
+  .hero-counter {
+    display: inline-flex;
+    gap: 20px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(232,117,138,0.2);
+    border-radius: 20px;
+    padding: 20px 40px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    animation: fadeUp 1s ease 1s both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .counter-unit {
+    text-align: center;
+    min-width: 60px;
+  }
+
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--rose);
+    display: block;
+    text-shadow: 0 0 20px rgba(232,117,138,0.5);
+    font-weight: 700;
+  }
+
+  .counter-label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(249,232,236,0.4);
+  }
+
+  .counter-divider {
+    color: rgba(232,117,138,0.3);
+    font-size: 1.5rem;
+    align-self: center;
+  }
+
+  .hero-quote {
+    margin-top: 40px;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(249,232,236,0.5);
+    max-width: 500px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Orbiting hearts around hero */
+  .orbit-heart {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0.15;
+    animation: orbit linear infinite;
+  }
+
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+  }
+
+  /* ============ SECTION COMMONS ============ */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 100px 40px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .section-tag {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, var(--blush), var(--rose));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    font-size: 1.1rem;
+    color: rgba(249,232,236,0.5);
+    font-style: italic;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .section-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rose), transparent);
+    margin: 24px auto 0;
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============ PROPOSAL SECTION ============ */
+  #proposal {
+    background: radial-gradient(ellipse at center, #200810 0%, #0d0208 70%);
+  }
+
+  .proposal-timeline {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .proposal-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--rose), transparent);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+    align-items: center;
+  }
+
+  .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+  .timeline-item:nth-child(odd) .timeline-content { text-align: right; }
+
+  .timeline-content {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,117,138,0.15);
+    border-radius: 18px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s;
+  }
+
+  .timeline-content:hover {
+    border-color: rgba(232,117,138,0.4);
+    box-shadow: 0 0 40px rgba(232,117,138,0.1);
+    transform: translateY(-4px);
+  }
+
+  .timeline-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--rose);
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(232,117,138,0.8);
+    animation: heartPulse 2s ease-in-out infinite;
+  }
+
+  .timeline-year {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--rose);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .timeline-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--blush);
+    margin-bottom: 10px;
+  }
+
+  .timeline-text {
+    font-size: 1rem;
+    color: rgba(249,232,236,0.6);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 600px) {
+    .proposal-timeline::before { left: 20px; }
+    .timeline-item, .timeline-item:nth-child(odd) { flex-direction: column; }
+    .timeline-item:nth-child(odd) .timeline-content { text-align: left; }
+    .timeline-dot { order: -1; }
+    .timeline-content { margin-left: 40px; }
+  }
+
+  /* ============ SCHOOL LIFE ============ */
+  #school {
+    background: radial-gradient(ellipse at 70% 30%, #1a0d05 0%, #0d0208 60%);
+  }
+
+  .school-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .school-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,117,138,0.15);
+    border-radius: 20px;
+    padding: 32px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .school-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(232,117,138,0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .school-card:hover::before { opacity: 1; }
+  .school-card:hover {
+    border-color: rgba(232,117,138,0.35);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(232,117,138,0.1);
+  }
+
+  .school-icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+  .school-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--blush);
+    margin-bottom: 10px;
+  }
+  .school-card p {
+    font-size: 0.95rem;
+    color: rgba(249,232,236,0.55);
+    line-height: 1.7;
+  }
+
+  /* ============ MEDIA / GALLERY SECTION ============ */
+  #memories {
+    background: radial-gradient(ellipse at 20% 80%, #150a1a 0%, #0d0208 60%);
+  }
+
+  .media-tabs {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+  }
+
+  .media-tab {
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 1px solid rgba(232,117,138,0.3);
+    background: transparent;
+    color: rgba(249,232,236,0.6);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .media-tab.active, .media-tab:hover {
+    background: linear-gradient(135deg, var(--wine), var(--rose));
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 20px rgba(232,117,138,0.3);
+  }
+
+  /* Upload area */
+  .upload-area {
+    border: 2px dashed rgba(232,117,138,0.3);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+
+  .upload-area:hover, .upload-area.drag-over {
+    border-color: var(--rose);
+    background: rgba(232,117,138,0.05);
+  }
+
+  .upload-area input { display: none; }
+  .upload-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+  .upload-text { color: rgba(249,232,236,0.6); font-size: 1rem; }
+  .upload-text span { color: var(--rose); cursor: pointer; }
+  .upload-hint { font-size: 0.8rem; color: rgba(249,232,236,0.3); margin-top: 8px; }
+
+  /* Gallery grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    cursor: pointer;
+    group: true;
+    border: 1px solid rgba(232,117,138,0.1);
+    transition: all 0.4s;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.03);
+    border-color: rgba(232,117,138,0.4);
+    box-shadow: 0 10px 40px rgba(232,117,138,0.2);
+    z-index: 2;
+  }
+
+  .gallery-item img, .gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13,2,8,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+  .gallery-overlay-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50px;
+    color: white;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .gallery-overlay-btn:hover { background: rgba(232,117,138,0.4); }
+
+  .gallery-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(249,232,236,0.3);
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  /* Video tab */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .video-item {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(232,117,138,0.15);
+    background: rgba(255,255,255,0.03);
+    transition: all 0.4s;
+  }
+
+  .video-item:hover {
+    border-color: rgba(232,117,138,0.4);
+    box-shadow: 0 10px 40px rgba(232,117,138,0.15);
+    transform: translateY(-4px);
+  }
+
+  .video-item video {
+    width: 100%;
+    display: block;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .video-controls {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .video-date { font-size: 0.8rem; color: rgba(249,232,236,0.4); }
+
+  /* Lightbox */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 0 60px rgba(232,117,138,0.2);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px; right: 24px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: rgba(255,255,255,0.6);
+    background: none;
+    border: none;
+    transition: color 0.2s;
+    width: 44px; height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+  }
+  .lightbox-close:hover { color: var(--rose); background: rgba(232,117,138,0.2); }
+
+  /* ============ SPECIAL DATES ============ */
+  #dates {
+    background: radial-gradient(ellipse at 50% 0%, #1a0820 0%, #0d0208 60%);
+  }
+
+  .dates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .date-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,117,138,0.15);
+    border-radius: 18px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .date-card.upcoming {
+    border-color: rgba(232,117,138,0.4);
+    box-shadow: 0 0 30px rgba(232,117,138,0.1);
+  }
+
+  .date-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(232,117,138,0.5);
+    box-shadow: 0 20px 50px rgba(232,117,138,0.15);
+  }
+
+  .date-emoji { font-size: 2.5rem; margin-bottom: 14px; display: block; }
+  .date-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--blush);
+    margin-bottom: 8px;
+  }
+  .date-when {
+    font-size: 0.85rem;
+    color: var(--rose);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .date-countdown {
+    font-size: 0.8rem;
+    color: rgba(249,232,236,0.4);
+    font-style: italic;
+  }
+
+  .upcoming-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: var(--rose);
+    color: white;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 50px;
+  }
+
+  /* ============ FUTURE DREAMS ============ */
+  #dreams {
+    background: radial-gradient(ellipse at 50% 100%, #0a0a2a 0%, #0d0208 50%);
+    text-align: center;
+    padding-bottom: 140px;
+  }
+
+  .stars-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle linear infinite;
+  }
+
+  @keyframes twinkle {
+    0%,100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.5); }
+  }
+
+  .dreams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto 60px;
+    text-align: left;
+  }
+
+  .dream-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(130,80,160,0.2);
+    border-radius: 20px;
+    padding: 32px;
+    transition: all 0.4s;
+  }
+
+  .dream-card:hover {
+    border-color: rgba(180,120,220,0.4);
+    box-shadow: 0 0 40px rgba(130,80,160,0.1);
+    transform: translateY(-4px);
+  }
+
+  .dream-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+  .dream-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #d4b8e8;
+    margin-bottom: 10px;
+  }
+  .dream-card p { font-size: 0.95rem; color: rgba(249,232,236,0.5); line-height: 1.7; }
+
+  .promise-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: rgba(212,184,232,0.8);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    text-shadow: 0 0 40px rgba(130,80,160,0.3);
+  }
+
+  /* ============ CHAT SECTION ============ */
+  #chat {
+    background: radial-gradient(ellipse at 80% 50%, #0a1a1a 0%, #0d0208 60%);
+  }
+
+  .chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .chat-header {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,117,138,0.2);
+    border-radius: 20px 20px 0 0;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .chat-header-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--wine), var(--rose));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .chat-header-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--blush);
+  }
+
+  .chat-header-info p {
+    font-size: 0.8rem;
+    color: rgba(249,232,236,0.4);
+  }
+
+  .online-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 6px #4ade80;
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  /* Who is chatting selector */
+  .chat-who {
+    background: rgba(255,255,255,0.03);
+    border-left: 1px solid rgba(232,117,138,0.2);
+    border-right: 1px solid rgba(232,117,138,0.2);
+    padding: 12px 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .chat-who span { font-size: 0.85rem; color: rgba(249,232,236,0.5); }
+
+  .who-btn {
+    padding: 6px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(232,117,138,0.3);
+    background: transparent;
+    color: rgba(249,232,236,0.6);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .who-btn.selected {
+    background: linear-gradient(135deg, var(--wine), var(--rose));
+    color: white;
+    border-color: transparent;
+  }
+
+  .chat-messages {
+    height: 450px;
+    overflow-y: auto;
+    padding: 24px;
+    background: rgba(255,255,255,0.02);
+    border-left: 1px solid rgba(232,117,138,0.2);
+    border-right: 1px solid rgba(232,117,138,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    scroll-behavior: smooth;
+  }
+
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: transparent; }
+  .chat-messages::-webkit-scrollbar-thumb { background: rgba(232,117,138,0.3); border-radius: 2px; }
+
+  .chat-bubble {
+    display: flex;
+    gap: 10px;
+    max-width: 80%;
+    animation: bubbleIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: scale(0.9) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .chat-bubble.sent { align-self: flex-end; flex-direction: row-reverse; }
+
+  .bubble-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--wine), var(--rose));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    align-self: flex-end;
+  }
+
+  .bubble-avatar.taniya { background: linear-gradient(135deg, #7c3d8f, #c47dd4); }
+
+  .bubble-content {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(232,117,138,0.15);
+    border-radius: 18px 18px 18px 4px;
+    padding: 12px 16px;
+    max-width: 100%;
+    word-break: break-word;
+  }
+
+  .chat-bubble.sent .bubble-content {
+    background: linear-gradient(135deg, rgba(124,45,62,0.6), rgba(232,117,138,0.3));
+    border-color: rgba(232,117,138,0.3);
+    border-radius: 18px 18px 4px 18px;
+  }
+
+  .bubble-name {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--rose);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .chat-bubble.sent .bubble-name { color: rgba(249,232,236,0.6); }
+
+  .bubble-text {
+    font-size: 0.95rem;
+    color: rgba(249,232,236,0.85);
+    line-height: 1.5;
+  }
+
+  .bubble-img {
+    max-width: 200px;
+    border-radius: 10px;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .bubble-img:hover { transform: scale(1.02); }
+
+  .bubble-video {
+    max-width: 200px;
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+
+  .bubble-time {
+    font-size: 0.65rem;
+    color: rgba(249,232,236,0.3);
+    margin-top: 6px;
+    text-align: right;
+  }
+
+  /* Chat input */
+  .chat-input-area {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,117,138,0.2);
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    padding: 16px 20px;
+  }
+
+  .chat-input-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+
+  .chat-input-wrap {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(232,117,138,0.2);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px 4px 16px;
+    transition: border-color 0.3s;
+  }
+
+  .chat-input-wrap:focus-within { border-color: rgba(232,117,138,0.5); }
+
+  #chatInput {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #f9e8ec;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    padding: 10px 4px;
+    outline: none;
+    resize: none;
+    max-height: 100px;
+    line-height: 1.4;
+  }
+
+  #chatInput::placeholder { color: rgba(249,232,236,0.3); }
+
+  .chat-attach-btn {
+    background: none;
+    border: none;
+    color: rgba(249,232,236,0.4);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+  }
+
+  .chat-attach-btn:hover { color: var(--rose); }
+  #chatFileInput { display: none; }
+
+  .chat-send-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--wine), var(--rose));
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(232,117,138,0.3);
+  }
+
+  .chat-send-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(232,117,138,0.5);
+  }
+
+  .chat-notice {
+    font-size: 0.75rem;
+    color: rgba(249,232,236,0.3);
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+  }
+
+  .system-msg {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(249,232,236,0.3);
+    font-style: italic;
+    padding: 4px 0;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 60px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(232,117,138,0.1);
+    background: #0a0107;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-names {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--blush);
+    margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(232,117,138,0.3);
+  }
+
+  .footer-quote {
+    font-style: italic;
+    color: rgba(249,232,236,0.4);
+    font-size: 0.9rem;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    line-height: 1.7;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(249,232,236,0.2);
+    letter-spacing: 1px;
+  }
+
+  /* ============ FLOAT ANIMATION ============ */
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    section { padding: 80px 20px; }
+    .dates-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .chat-messages { height: 350px; }
+    .chat-bubble { max-width: 90%; }
+  }
+
+  @media (max-width: 480px) {
+    .dates-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-counter { padding: 16px 20px; gap: 12px; }
+    .counter-num { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- Floating hearts background -->
+<div class="hearts-bg" id="heartsBg"></div>
+
+<!-- ============ LOCK SCREEN ============ -->
+<div id="lockScreen">
+  <div class="lock-bg-hearts" id="lockHearts"></div>
+  <div class="lock-card" id="lockCard">
+    <span class="lock-heart">💗</span>
+    <div class="lock-title">Aditya ❤️ Taniya</div>
+    <div class="lock-sub">Private Space · Enter to Enter</div>
+    <div class="lock-input-wrap">
+      <input type="password" id="passwordInput" placeholder="Enter our secret password..." autocomplete="off">
+    </div>
+    <button class="lock-btn" onclick="checkPassword()">Open Our World ❤️</button>
+    <div class="lock-error" id="lockError">Wrong password, my love 💔</div>
+  </div>
+</div>
+
+<!-- ============ SPECIAL WISH OVERLAY ============ -->
+<div id="wishOverlay">
+  <div class="wish-card">
+    <span class="wish-emoji" id="wishEmoji">🎂</span>
+    <div class="wish-occasion" id="wishOccasion">Happy Anniversary!</div>
+    <div class="wish-text" id="wishText">Wishing you both endless love and happiness.</div>
+    <button class="wish-close" onclick="closeWish()">With Love ❤️</button>
+  </div>
+</div>
+
+<!-- ============ LIGHTBOX ============ -->
+<div id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- ============ MAIN SITE ============ -->
+<div id="mainSite">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">A ❤️ T</div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" onclick="closeMenu()">Home</a></li>
+      <li><a href="#proposal" onclick="closeMenu()">Our Story</a></li>
+      <li><a href="#school" onclick="closeMenu()">School Days</a></li>
+      <li><a href="#memories" onclick="closeMenu()">Gallery</a></li>
+      <li><a href="#dates" onclick="closeMenu()">Special Dates</a></li>
+      <li><a href="#dreams" onclick="closeMenu()">Dreams</a></li>
+      <li><a href="#song" onclick="closeMenu()">Our Song</a></li>
+      <li><a href="#chat" onclick="closeMenu()">Our Chat</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-date">Since 6 March 2022 · 10:30 AM</div>
+      <h1 class="hero-names">Aditya ❤️ Taniya</h1>
+      <span class="hero-heart">💗</span>
+      <div class="hero-subtitle">Our Story, Our World, Our Forever</div>
+      <div class="hero-counter">
+        <div class="counter-unit">
+          <span class="counter-num" id="counterYears">0</span>
+          <span class="counter-label">Years</span>
+        </div>
+        <span class="counter-divider">·</span>
+        <div class="counter-unit">
+          <span class="counter-num" id="counterMonths">0</span>
+          <span class="counter-label">Months</span>
+        </div>
+        <span class="counter-divider">·</span>
+        <div class="counter-unit">
+          <span class="counter-num" id="counterDays">0</span>
+          <span class="counter-label">Days</span>
+        </div>
+        <span class="counter-divider">·</span>
+        <div class="counter-unit">
+          <span class="counter-num" id="counterHours">0</span>
+          <span class="counter-label">Hours</span>
+        </div>
+        <span class="counter-divider">·</span>
+        <div class="counter-unit">
+          <span class="counter-num" id="counterMins">0</span>
+          <span class="counter-label">Minutes</span>
+        </div>
+        <span class="counter-divider">·</span>
+        <div class="counter-unit">
+          <span class="counter-num" id="counterSecs">0</span>
+          <span class="counter-label">Seconds</span>
+        </div>
+      </div>
+      <p class="hero-quote">"In a truth or dare game, in a school hallway, somewhere between friendship and forever — a single 'I love you' changed everything."</p>
+    </div>
+  </section>
+
+  <!-- ============ PROPOSAL / OUR STORY ============ -->
+  <section id="proposal">
+    <div class="section-header reveal">
+      <span class="section-tag">How It All Began</span>
+      <h2 class="section-title">The Day Everything Changed 💍</h2>
+      <p class="section-sub">A truth-and-dare game. A quiet confession. A love story that began.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="proposal-timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="timeline-year">Class 9 · 2020</div>
+          <h3 class="timeline-heading">Where It All Started</h3>
+          <p class="timeline-text">Two students at Bishalgarh English Medium HS School. A friendship that felt different from the start — warmer, deeper, more special than anything before.</p>
+        </div>
+        <div class="timeline-dot"></div>
+        <div style="flex:1"></div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div style="flex:1"></div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">Growing Closer · 2021</div>
+          <h3 class="timeline-heading">More Than Friends</h3>
+          <p class="timeline-text">Study sessions turning into long conversations. Sharing notes, sharing laughs, sharing silence. Something beautiful was quietly growing between them.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="timeline-year">6 March 2022 · 10:30 AM</div>
+          <h3 class="timeline-heading">The Confession 💗</h3>
+          <p class="timeline-text">During a truth-and-dare game with friends, Puchu quietly looked at her and said it — "I love you." Three words that changed everything. Taniya, encouraged by their friends, confessed back. And just like that, a love story was born.</p>
+        </div>
+        <div class="timeline-dot"></div>
+        <div style="flex:1"></div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div style="flex:1"></div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-year">Class 10–12 · 2022–2024</div>
+          <h3 class="timeline-heading">Growing Together</h3>
+          <p class="timeline-text">Through Science stream, board exam stress, practical classes, lunch breaks, and every in-between moment — they faced it all, side by side. Class 12 completed in March 2024.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-content">
+          <div class="timeline-year">Now & Always</div>
+          <h3 class="timeline-heading">Beyond School, Still Together</h3>
+          <p class="timeline-text">College, career, new cities, new dreams — but this space holds every memory safely. No matter where life takes them, this love remains alive.</p>
+        </div>
+        <div class="timeline-dot"></div>
+        <div style="flex:1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCHOOL LIFE ============ -->
+  <section id="school">
+    <div class="section-header reveal">
+      <span class="section-tag">Bishalgarh English Medium HS School</span>
+      <h2 class="section-title">Our School Days 🎓</h2>
+      <p class="section-sub">From Class 9 to Class 12 — the years that shaped everything.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="school-grid">
+      <div class="school-card reveal">
+        <span class="school-icon">📚</span>
+        <h3>Study Sessions Together</h3>
+        <p>Sharing notes, explaining concepts to each other, and pretending to study while actually just enjoying being close. Every shared textbook was a little love story.</p>
+      </div>
+      <div class="school-card reveal">
+        <span class="school-icon">🔬</span>
+        <h3>Science Stream Dreams</h3>
+        <p>Chemistry, Physics, Biology — a tough stream made easier with a partner who understood both the formulas and the feelings. Lab partners in every sense.</p>
+      </div>
+      <div class="school-card reveal">
+        <span class="school-icon">😰</span>
+        <h3>Board Exam Stress</h3>
+        <p>Late-night revision worry, the nerves before results — they held each other's confidence together when it felt impossible. Strength in each other always.</p>
+      </div>
+      <div class="school-card reveal">
+        <span class="school-icon">🍱</span>
+        <h3>Lunch Break Moments</h3>
+        <p>Those stolen lunch break minutes — the laughter, the small fights, the shared food, the quiet moments that felt like they lasted forever.</p>
+      </div>
+      <div class="school-card reveal">
+        <span class="school-icon">🚶</span>
+        <h3>Walking Together</h3>
+        <p>Every walk to school, every walk home. The conversations that never had an end, and the comfortable silence that felt just as full.</p>
+      </div>
+      <div class="school-card reveal">
+        <span class="school-icon">💪</span>
+        <h3>Emotional Support</h3>
+        <p>On hard days, difficult teachers, failed tests or friendship fights — they were always each other's first call and safest corner.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY / MEMORIES ============ -->
+  <section id="memories">
+    <div class="section-header reveal">
+      <span class="section-tag">Our Beautiful Moments</span>
+      <h2 class="section-title">Memories & Gallery ❤️</h2>
+      <p class="section-sub">Every picture tells our story. Upload yours and keep them here forever.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="media-tabs">
+      <button class="media-tab active" onclick="switchTab('photos')">📸 Photos</button>
+      <button class="media-tab" onclick="switchTab('videos')">🎬 Videos</button>
+    </div>
+
+    <!-- Photos Tab -->
+    <div id="photosTab">
+      <div class="upload-area" id="photoUploadArea" onclick="document.getElementById('photoFileInput').click()" ondrop="handleDrop(event,'photo')" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+        <input type="file" id="photoFileInput" accept="image/*" multiple onchange="handlePhotoUpload(event)">
+        <span class="upload-icon">🌸</span>
+        <div class="upload-text">Drop photos here or <span>click to upload</span></div>
+        <div class="upload-hint">Supports: JPG, PNG, GIF, WebP · Stored locally on your device</div>
+      </div>
+      <div class="gallery-grid" id="photoGrid">
+        <div class="gallery-empty" id="photoEmpty">No photos yet — upload your first memory! 📸</div>
+      </div>
+    </div>
+
+    <!-- Videos Tab -->
+    <div id="videosTab" style="display:none">
+      <div class="upload-area" onclick="document.getElementById('videoFileInput').click()" ondrop="handleDrop(event,'video')" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+        <input type="file" id="videoFileInput" accept="video/*" multiple onchange="handleVideoUpload(event)">
+        <span class="upload-icon">🎬</span>
+        <div class="upload-text">Drop videos here or <span>click to upload</span></div>
+        <div class="upload-hint">Supports: MP4, MOV, AVI · Stored locally on your device</div>
+      </div>
+      <div class="video-grid" id="videoGrid">
+        <div class="gallery-empty" id="videoEmpty">No videos yet — upload your first memory! 🎬</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPECIAL DATES ============ -->
+  <section id="dates">
+    <div class="section-header reveal">
+      <span class="section-tag">Mark Your Calendar</span>
+      <h2 class="section-title">Our Special Dates 📅</h2>
+      <p class="section-sub">Every day spent together is special. These ones are magical.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="dates-grid" id="datesGrid">
+      <!-- Filled by JS -->
+    </div>
+  </section>
+
+  <!-- ============ FUTURE DREAMS ============ -->
+  <section id="dreams">
+    <div class="stars-bg" id="starsContainer"></div>
+    <div class="section-header reveal" style="position:relative;z-index:1">
+      <span class="section-tag">What Tomorrow Holds</span>
+      <h2 class="section-title" style="-webkit-text-fill-color:transparent;background:linear-gradient(135deg,#d4b8e8,#a07cc8);-webkit-background-clip:text;background-clip:text;">Our Future Dreams ✨</h2>
+      <p class="section-sub">Two hearts, one direction. Dreaming the same dreams, together.</p>
+      <div class="section-divider" style="background:linear-gradient(to right, transparent, #a07cc8, transparent)"></div>
+    </div>
+
+    <div class="dreams-grid" style="position:relative;z-index:1">
+      <div class="dream-card reveal">
+        <span class="dream-icon">🎓</span>
+        <h3>College & Career</h3>
+        <p>New cities, new opportunities, new challenges — but the same support system, always rooting for each other to reach every goal.</p>
+      </div>
+      <div class="dream-card reveal">
+        <span class="dream-icon">✈️</span>
+        <h3>Travel Together</h3>
+        <p>Every destination explored together. Mountains, beaches, hidden towns — making memories in every corner of the world they discover.</p>
+      </div>
+      <div class="dream-card reveal">
+        <span class="dream-icon">🏠</span>
+        <h3>A Home Together</h3>
+        <p>Someday — a home that's truly theirs. Filled with laughter, warmth, little fights, and the deepest comfort.</p>
+      </div>
+      <div class="dream-card reveal">
+        <span class="dream-icon">💍</span>
+        <h3>Forever & Always</h3>
+        <p>The dream that ties all others together. One day — officially, forever. Every love story deserves its perfect chapter.</p>
+      </div>
+    </div>
+
+    <div class="promise-text reveal" style="position:relative;z-index:1">
+      "No matter where life takes us, this love — these memories — stay alive right here. Forever."
+    </div>
+  </section>
+
+  <!-- ============ CHAT ============ -->
+  <section id="chat">
+    <div class="section-header reveal">
+      <span class="section-tag">Just Between Us</span>
+      <h2 class="section-title">Our Private Chat 💬</h2>
+      <p class="section-sub">Send messages, photos & videos — just for the two of you.</p>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="chat-container reveal">
+      <div class="chat-header">
+        <div class="chat-header-avatar">💗</div>
+        <div class="chat-header-info">
+          <h3>Aditya & Taniya</h3>
+          <p><span class="online-dot"></span>Private Couple Chat</p>
+        </div>
+      </div>
+
+      <div class="chat-who">
+        <span>I am:</span>
+        <button class="who-btn selected" id="whoAditya" onclick="selectWho('Aditya')">💙 Aditya (Puchu)</button>
+        <button class="who-btn" id="whoTaniya" onclick="selectWho('Taniya')">💗 Taniya</button>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="system-msg">💗 This is your private space. Messages are saved on this device.</div>
+      </div>
+
+      <div class="chat-input-area">
+        <div class="chat-input-row">
+          <div class="chat-input-wrap">
+            <textarea id="chatInput" placeholder="Say something beautiful..." rows="1" onkeydown="handleChatKey(event)" oninput="autoResize(this)"></textarea>
+            <button class="chat-attach-btn" onclick="document.getElementById('chatFileInput').click()" title="Send photo/video">📎</button>
+            <input type="file" id="chatFileInput" accept="image/*,video/*" onchange="sendFileMsg(event)">
+          </div>
+          <button class="chat-send-btn" onclick="sendChatMsg()">➤</button>
+        </div>
+        <div class="chat-notice">Messages are saved locally on this device. Use the same device for shared history.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ OUR SONG ============ -->
+  <section id="song" style="background:radial-gradient(ellipse at 50% 50%, #0a1510 0%, #0d0208 60%);text-align:center;">
+    <div class="section-header reveal">
+      <span class="section-tag">The Song That Is Ours</span>
+      <h2 class="section-title">Our Song 🎵</h2>
+      <p class="section-sub">The song that plays in the background of every memory.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="reveal" style="max-width:600px;margin:0 auto;">
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(232,117,138,0.2);border-radius:20px;padding:40px 30px;">
+        <div style="font-size:3rem;margin-bottom:20px;">🎵</div>
+        <p style="font-family:'Dancing Script',cursive;font-size:1.5rem;color:var(--blush);margin-bottom:16px;">Add Your Song</p>
+        <p style="color:rgba(249,232,236,0.5);font-size:0.95rem;line-height:1.8;margin-bottom:24px;">
+          To add your special song, paste a YouTube link below and it will play here forever.
+        </p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+          <input id="songUrl" type="text" placeholder="Paste YouTube URL here..." 
+            style="flex:1;min-width:200px;padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(232,117,138,0.3);border-radius:10px;color:#f9e8ec;font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;">
+          <button onclick="setSong()" style="padding:12px 24px;background:linear-gradient(135deg,var(--wine),var(--rose));border:none;border-radius:10px;color:white;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:1px;">
+            Set Song ❤️
+          </button>
+        </div>
+        <div id="songPlayer" style="margin-top:28px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-names">Aditya ❤️ Taniya</div>
+    <div class="footer-quote">"This little corner of the internet belongs to us — our story, our memories, our forever."</div>
+    <div class="footer-copy">Made with ❤️ · Since 6 March 2022</div>
+  </footer>
+
+</div><!-- end mainSite -->
+
+<script>
+// ============================================================
+// CONFIGURATION
+// ============================================================
+const CONFIG = {
+  password: "Taniyaditya09",
+  anniversary: new Date("2022-03-06T10:30:00"),
+  adityaBirthday: { month: 3, day: 9 },   // 9 April
+  taniyaBirthday: { month: 10, day: 9 },  // 9 November
+};
+
+// ============================================================
+// CURSOR
+// ============================================================
+const cursor = document.getElementById('cursor');
+const cursorTrail = document.getElementById('cursorTrail');
+let mx = 0, my = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+  setTimeout(() => {
+    cursorTrail.style.left = mx + 'px';
+    cursorTrail.style.top = my + 'px';
+  }, 80);
+});
+
+// ============================================================
+// LOCK HEARTS BG
+// ============================================================
+const lockHearts = document.getElementById('lockHearts');
+const heartChars = ['❤️','💗','💕','💖','💝','🌸'];
+for (let i = 0; i < 30; i++) {
+  const s = document.createElement('span');
+  s.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+  s.style.left = Math.random() * 100 + '%';
+  s.style.bottom = '-30px';
+  s.style.animationDuration = (6 + Math.random() * 10) + 's';
+  s.style.animationDelay = (Math.random() * 8) + 's';
+  s.style.fontSize = (0.8 + Math.random() * 1.5) + 'rem';
+  lockHearts.appendChild(s);
+}
+
+// ============================================================
+// PASSWORD
+// ============================================================
+function checkPassword() {
+  const val = document.getElementById('passwordInput').value;
+  if (val === CONFIG.password) {
+    const card = document.getElementById('lockCard');
+    card.style.transform = 'scale(0.9)';
+    card.style.opacity = '0';
+    card.style.transition = 'all 0.5s';
+    setTimeout(() => {
+      document.getElementById('lockScreen').style.opacity = '0';
+      document.getElementById('lockScreen').style.transition = 'opacity 0.8s';
+      setTimeout(() => {
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('mainSite').classList.add('visible');
+        initSite();
+      }, 800);
+    }, 400);
+  } else {
+    const card = document.getElementById('lockCard');
+    card.classList.add('shake');
+    const err = document.getElementById('lockError');
+    err.classList.add('show');
+    setTimeout(() => { card.classList.remove('shake'); }, 600);
+    setTimeout(() => { err.classList.remove('show'); }, 3000);
+    document.getElementById('passwordInput').value = '';
+  }
+}
+
+document.getElementById('passwordInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+// ============================================================
+// SITE INIT
+// ============================================================
+function initSite() {
+  startFloatingHearts();
+  startHeroSlideshow();
+  startCounter();
+  buildSpecialDates();
+  buildStars();
+  initScrollReveal();
+  loadChatMessages();
+  loadPhotos();
+  loadSong();
+  loadVideos();
+  checkSpecialWish();
+  setInterval(updateCounter, 1000);
+}
+
+// ============================================================
+// FLOATING HEARTS
+// ============================================================
+function startFloatingHearts() {
+  const bg = document.getElementById('heartsBg');
+  const chars = ['❤️','💗','💕','💖','🌸','✨'];
+  function addHeart() {
+    const s = document.createElement('span');
+    s.textContent = chars[Math.floor(Math.random() * chars.length)];
+    s.style.left = Math.random() * 100 + '%';
+    s.style.fontSize = (0.6 + Math.random() * 0.8) + 'rem';
+    s.style.animationDuration = (10 + Math.random() * 15) + 's';
+    s.style.animationDelay = '0s';
+    bg.appendChild(s);
+    setTimeout(() => s.remove(), 25000);
+  }
+  setInterval(addHeart, 1200);
+}
+
+// ============================================================
+// HERO SLIDESHOW (uses repo images as background)
+// ============================================================
+const HERO_BG_IMAGES = [
+  'images/proposal/proposal1.jpg','images/proposal/proposal2.jpg',
+  'images/school/school1.jpg','images/school/school2.jpg',
+  'images/memories/memory1.jpg','images/memories/memory2.jpg'
+];
+let heroIdx = 0;
+
+function startHeroSlideshow() {
+  const hero = document.getElementById('hero');
+  // Create overlay elements
+  const slide1 = document.createElement('div');
+  const slide2 = document.createElement('div');
+  [slide1, slide2].forEach(s => {
+    s.style.cssText = 'position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity 2s ease;opacity:0;z-index:0;';
+    hero.insertBefore(s, hero.firstChild);
+  });
+
+  function tryLoad(idx) {
+    const img = new Image();
+    img.onload = () => {
+      const active = heroIdx % 2 === 0 ? slide1 : slide2;
+      const inactive = heroIdx % 2 === 0 ? slide2 : slide1;
+      active.style.backgroundImage = `url('${HERO_BG_IMAGES[idx]}')`;
+      active.style.opacity = '0.18';
+      inactive.style.opacity = '0';
+      heroIdx++;
+    };
+    img.onerror = () => {}; // silently skip missing images
+    img.src = HERO_BG_IMAGES[idx];
+  }
+
+  let current = 0;
+  tryLoad(current);
+  setInterval(() => {
+    current = (current + 1) % HERO_BG_IMAGES.length;
+    tryLoad(current);
+  }, 5000);
+}
+
+// ============================================================
+// ANNIVERSARY COUNTER
+// ============================================================
+function updateCounter() {
+  const now = new Date();
+  const diff = now - CONFIG.anniversary;
+  if (diff < 0) return;
+  const totalSecs = Math.floor(diff / 1000);
+  const secs = totalSecs % 60;
+  const totalMins = Math.floor(totalSecs / 60);
+  const mins = totalMins % 60;
+  const totalHours = Math.floor(totalMins / 60);
+  const hours = totalHours % 24;
+  const totalDays = Math.floor(totalHours / 24);
+  const years = Math.floor(totalDays / 365.25);
+  const remainDays = Math.floor(totalDays - years * 365.25);
+  const months = Math.floor(remainDays / 30.44);
+  const days = Math.floor(remainDays - months * 30.44);
+  document.getElementById('counterYears').textContent = years;
+  document.getElementById('counterMonths').textContent = months;
+  document.getElementById('counterDays').textContent = days;
+  document.getElementById('counterHours').textContent = hours;
+  document.getElementById('counterMins').textContent = mins;
+  document.getElementById('counterSecs').textContent = secs;
+}
+function startCounter() { updateCounter(); }
+
+// ============================================================
+// SPECIAL DATES
+// ============================================================
+const SPECIAL_DATES = [
+  { emoji:'🎂', name:"Aditya's Birthday", month: CONFIG.adityaBirthday.month, day: CONFIG.adityaBirthday.day },
+  { emoji:'🎂', name:"Taniya's Birthday", month: CONFIG.taniyaBirthday.month, day: CONFIG.taniyaBirthday.day },
+  { emoji:'💍', name:"Our Anniversary", month: 2, day: 6, note:"6 March 2022 · 10:30 AM" },
+  { emoji:'🌹', name:"Rose Day", month: 1, day: 7, note:"Valentine's Week" },
+  { emoji:'🍫', name:"Chocolate Day", month: 1, day: 9, note:"Valentine's Week" },
+  { emoji:'🧸', name:"Teddy Day", month: 1, day: 10, note:"Valentine's Week" },
+  { emoji:'🌷', name:"Propose Day", month: 1, day: 8, note:"Valentine's Week" },
+  { emoji:'🤝', name:"Promise Day", month: 1, day: 11, note:"Valentine's Week" },
+  { emoji:'❤️', name:"Valentine's Day", month: 1, day: 14 },
+  { emoji:'👫', name:"Girlfriend Day", month: 7, day: 1, note:"1st August" },
+  { emoji:'👑', name:"Boyfriend Day", month: 9, day: 3, note:"3rd October" },
+];
+
+function buildSpecialDates() {
+  const grid = document.getElementById('datesGrid');
+  const now = new Date();
+  const thisYear = now.getFullYear();
+
+  SPECIAL_DATES.forEach(d => {
+    let next = new Date(thisYear, d.month, d.day);
+    if (next < now) next = new Date(thisYear + 1, d.month, d.day);
+    const diffMs = next - now;
+    const diffDays = Math.ceil(diffMs / (1000*60*60*24));
+    const isToday = diffDays === 0 || (next.getDate() === now.getDate() && next.getMonth() === now.getMonth());
+    const isSoon = diffDays <= 7;
+
+    const card = document.createElement('div');
+    card.className = 'date-card reveal' + (isToday || isSoon ? ' upcoming' : '');
+
+    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    card.innerHTML = `
+      ${isToday ? '<span class="upcoming-badge">Today! 🎉</span>' : isSoon ? '<span class="upcoming-badge">Soon!</span>' : ''}
+      <span class="date-emoji">${d.emoji}</span>
+      <div class="date-name">${d.name}</div>
+      <div class="date-when">${monthNames[d.month]} ${d.day}${d.note ? ' · ' + d.note : ''}</div>
+      <div class="date-countdown">${isToday ? "🎉 Today is the day!" : diffDays === 1 ? "Tomorrow!" : diffDays + " days to go"}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ============================================================
+// SPECIAL WISH CHECK
+// ============================================================
+const WISHES = {
+  anniversary: {
+    emoji:'💍',
+    occasion:'Happy Anniversary, Puchu & Taniya! 🎉',
+    text:'On this beautiful day, 6th March, we celebrate the day a simple "I love you" changed two lives forever. Here\'s to every year, every memory, and every tomorrow — together. 💗',
+    check: d => d.getMonth() === 2 && d.getDate() === 6
+  },
+  valentine: {
+    emoji:'❤️',
+    occasion:'Happy Valentine\'s Day! ❤️',
+    text:'Today, the whole world celebrates love — and you two have the most beautiful kind. Wishing you a day full of warmth, smiles, and all the love in the world.',
+    check: d => d.getMonth() === 1 && d.getDate() === 14
+  },
+  adityaBday: {
+    emoji:'🎂',
+    occasion:'Happy Birthday, Aditya (Puchu)! 🎉',
+    text:'Taniya\'s favorite person is celebrating today! Wishing you a day as bright and wonderful as the joy you bring. May this year be your best one yet. 💙',
+    check: d => d.getMonth() === CONFIG.adityaBirthday.month && d.getDate() === CONFIG.adityaBirthday.day
+  },
+  taniyaBday: {
+    emoji:'🎂',
+    occasion:'Happy Birthday, Taniya! 🎉',
+    text:'Aditya\'s favorite person is celebrating today! Wishing you endless joy, laughter, and all the love you deserve. You make every day brighter. 💗',
+    check: d => d.getMonth() === CONFIG.taniyaBirthday.month && d.getDate() === CONFIG.taniyaBirthday.day
+  },
+  girlfriendDay: {
+    emoji:'👫',
+    occasion:'Happy Girlfriend Day, Taniya! 💗',
+    text:'To the most special girlfriend in the world — today is your day. Thank you for being exactly who you are.',
+    check: d => d.getMonth() === 7 && d.getDate() === 1
+  },
+  boyfriendDay: {
+    emoji:'👑',
+    occasion:'Happy Boyfriend Day, Aditya (Puchu)! 💙',
+    text:'To the best boyfriend in the world — today celebrates you. Thank you for every moment of love and care.',
+    check: d => d.getMonth() === 9 && d.getDate() === 3
+  }
+};
+
+function checkSpecialWish() {
+  const today = new Date();
+  const shownKey = 'wish_' + today.toDateString();
+  if (localStorage.getItem(shownKey)) return;
+
+  for (const [key, wish] of Object.entries(WISHES)) {
+    if (wish.check(today)) {
+      document.getElementById('wishEmoji').textContent = wish.emoji;
+      document.getElementById('wishOccasion').textContent = wish.occasion;
+      document.getElementById('wishText').textContent = wish.text;
+      document.getElementById('wishOverlay').classList.add('active');
+      localStorage.setItem(shownKey, '1');
+      break;
+    }
+  }
+}
+
+function closeWish() {
+  document.getElementById('wishOverlay').classList.remove('active');
+}
+
+// ============================================================
+// STARS
+// ============================================================
+function buildStars() {
+  const container = document.getElementById('starsContainer');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDuration = (2 + Math.random() * 4) + 's';
+    star.style.animationDelay = (Math.random() * 4) + 's';
+    star.style.opacity = Math.random() * 0.5;
+    const size = (1 + Math.random() * 2) + 'px';
+    star.style.width = size; star.style.height = size;
+    container.appendChild(star);
+  }
+}
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ============================================================
+// MEDIA TABS
+// ============================================================
+function switchTab(tab) {
+  document.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('photosTab').style.display = tab === 'photos' ? 'block' : 'none';
+  document.getElementById('videosTab').style.display = tab === 'videos' ? 'block' : 'none';
+}
+
+// ============================================================
+// EXISTING GITHUB REPO IMAGES
+// ============================================================
+const REPO_IMAGES = {
+  proposal: ['images/proposal/proposal1.jpg','images/proposal/proposal2.jpg','images/proposal/proposal3.jpg','images/proposal/proposal4.jpg','images/proposal/proposal5.jpg','images/proposal/proposal6.jpg'],
+  school: ['images/school/school1.jpg','images/school/school2.jpg','images/school/school3.jpg','images/school/school4.jpg','images/school/school5.jpg','images/school/school6.jpg'],
+  memories: ['images/memories/memory1.jpg','images/memories/memory2.jpg','images/memories/memory3.jpg','images/memories/memory4.jpg'],
+  videos: ['videos/memories/a4.mp4','videos/memories/a5.mp4']
+};
+
+function loadRepoAssets() {
+  const allPaths = [...REPO_IMAGES.proposal, ...REPO_IMAGES.school, ...REPO_IMAGES.memories];
+  allPaths.forEach(path => {
+    const img = new Image();
+    img.onload = () => {
+      if (!photos.some(p => p.src === path)) {
+        const cat = path.includes('proposal') ? '💍 Proposal' : path.includes('school') ? '🎓 School' : '❤️ Memory';
+        photos.push({ src: path, date: cat, fromRepo: true, name: path.split('/').pop() });
+        renderPhotos();
+      }
+    };
+    img.src = path;
+  });
+  REPO_IMAGES.videos.forEach(path => {
+    if (!videos.some(v => v.url === path)) {
+      videos.push({ url: path, name: path.split('/').pop(), date: '📁 From our story', fromRepo: true });
+    }
+  });
+  renderVideos();
+}
+
+// ============================================================
+// PHOTO UPLOAD & GALLERY
+// ============================================================
+let photos = [];
+
+function loadPhotos() {
+  try {
+    const saved = localStorage.getItem('at_photos');
+    if (saved) {
+      photos = JSON.parse(saved).filter(p => !p.fromRepo);
+    }
+  } catch(e) {}
+  loadRepoAssets();
+}
+
+function handlePhotoUpload(e) {
+  const files = Array.from(e.target.files);
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const photo = { src: ev.target.result, date: new Date().toLocaleDateString(), name: file.name };
+      photos.unshift(photo);
+      try { localStorage.setItem('at_photos', JSON.stringify(photos.filter(p=>!p.fromRepo))); } catch(e) {}
+      renderPhotos();
+    };
+    reader.readAsDataURL(file);
+  });
+  e.target.value = '';
+}
+
+function renderPhotos() {
+  const grid = document.getElementById('photoGrid');
+  const empty = document.getElementById('photoEmpty');
+  grid.innerHTML = '';
+
+  if (photos.length === 0) {
+    grid.appendChild(empty);
+    return;
+  }
+
+  photos.forEach((photo, i) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.innerHTML = `
+      <img src="${photo.src}" alt="Memory ${i+1}" loading="lazy">
+      <div class="gallery-overlay">
+        <button class="gallery-overlay-btn" onclick="openLightbox('${photo.src}')">🔍 View</button>
+        <button class="gallery-overlay-btn" onclick="deletePhoto(${i})">🗑️ Delete</button>
+      </div>
+    `;
+    grid.appendChild(item);
+  });
+}
+
+function deletePhoto(i) {
+  if (confirm('Delete this photo?')) {
+    photos.splice(i, 1);
+    try { localStorage.setItem('at_photos', JSON.stringify(photos.filter(p=>!p.fromRepo))); } catch(e) {}
+    renderPhotos();
+  }
+}
+
+// ============================================================
+// VIDEO UPLOAD & GALLERY
+// ============================================================
+let videos = [];
+
+function loadVideos() {
+  // Videos are stored by reference only (too large for localStorage)
+  // They exist in session memory only
+}
+
+function handleVideoUpload(e) {
+  const files = Array.from(e.target.files);
+  files.forEach(file => {
+    const url = URL.createObjectURL(file);
+    const video = { url, name: file.name, date: new Date().toLocaleDateString() };
+    videos.unshift(video);
+    renderVideos();
+  });
+  e.target.value = '';
+}
+
+function renderVideos() {
+  const grid = document.getElementById('videoGrid');
+  const empty = document.getElementById('videoEmpty');
+  grid.innerHTML = '';
+
+  if (videos.length === 0) {
+    grid.appendChild(empty);
+    return;
+  }
+
+  videos.forEach((v, i) => {
+    const item = document.createElement('div');
+    item.className = 'video-item';
+    item.innerHTML = `
+      <video src="${v.url}" controls preload="metadata"></video>
+      <div class="video-controls">
+        <span class="video-date">📅 ${v.date}</span>
+        <button class="gallery-overlay-btn" onclick="deleteVideo(${i})">🗑️</button>
+      </div>
+    `;
+    grid.appendChild(item);
+  });
+}
+
+function deleteVideo(i) {
+  if (confirm('Remove this video?')) {
+    videos.splice(i, 1);
+    renderVideos();
+  }
+}
+
+// ============================================================
+// DRAG & DROP
+// ============================================================
+function handleDragOver(e) {
+  e.preventDefault();
+  e.currentTarget.classList.add('drag-over');
+}
+function handleDragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+function handleDrop(e, type) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  const files = Array.from(e.dataTransfer.files);
+  if (type === 'photo') {
+    files.filter(f => f.type.startsWith('image/')).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        photos.unshift({ src: ev.target.result, date: new Date().toLocaleDateString(), name: file.name });
+        try { localStorage.setItem('at_photos', JSON.stringify(photos.filter(p=>!p.fromRepo))); } catch(e) {}
+        renderPhotos();
+      };
+      reader.readAsDataURL(file);
+    });
+  } else {
+    files.filter(f => f.type.startsWith('video/')).forEach(file => {
+      videos.unshift({ url: URL.createObjectURL(file), name: file.name, date: new Date().toLocaleDateString() });
+      renderVideos();
+    });
+  }
+}
+
+// ============================================================
+// LIGHTBOX
+// ============================================================
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+});
+
+// ============================================================
+// CHAT
+// ============================================================
+let currentUser = 'Aditya';
+let chatMessages = [];
+
+function selectWho(name) {
+  currentUser = name;
+  document.getElementById('whoAditya').classList.toggle('selected', name === 'Aditya');
+  document.getElementById('whoTaniya').classList.toggle('selected', name === 'Taniya');
+}
+
+function loadChatMessages() {
+  try {
+    const saved = localStorage.getItem('at_chat');
+    if (saved) {
+      chatMessages = JSON.parse(saved);
+      const container = document.getElementById('chatMessages');
+      // Keep system msg
+      const systemMsg = container.querySelector('.system-msg');
+      container.innerHTML = '';
+      if (systemMsg) container.appendChild(systemMsg);
+      chatMessages.forEach(m => renderChatBubble(m));
+      scrollToBottom();
+    }
+  } catch(e) {}
+}
+
+function saveChatMessages() {
+  try { localStorage.setItem('at_chat', JSON.stringify(chatMessages.slice(-200))); } catch(e) {}
+}
+
+function sendChatMsg() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const msg = {
+    type: 'text',
+    user: currentUser,
+    text,
+    time: new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}),
+    ts: Date.now()
+  };
+
+  chatMessages.push(msg);
+  saveChatMessages();
+  renderChatBubble(msg);
+  input.value = '';
+  input.style.height = 'auto';
+  scrollToBottom();
+}
+
+function sendFileMsg(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const msg = {
+      type: file.type.startsWith('image/') ? 'image' : 'video',
+      user: currentUser,
+      src: ev.target.result,
+      time: new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}),
+      ts: Date.now()
+    };
+    chatMessages.push(msg);
+    saveChatMessages();
+    renderChatBubble(msg);
+    scrollToBottom();
+  };
+  reader.readAsDataURL(file);
+  e.target.value = '';
+}
+
+function renderChatBubble(msg) {
+  const container = document.getElementById('chatMessages');
+  const isSent = msg.user === currentUser;
+  const isAditya = msg.user === 'Aditya';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble' + (isSent ? ' sent' : '');
+
+  let mediaHtml = '';
+  if (msg.type === 'image') {
+    mediaHtml = `<img class="bubble-img" src="${msg.src}" onclick="openLightbox('${msg.src}')">`;
+  } else if (msg.type === 'video') {
+    mediaHtml = `<video class="bubble-video" src="${msg.src}" controls></video>`;
+  }
+
+  bubble.innerHTML = `
+    <div class="bubble-avatar ${isAditya ? '' : 'taniya'}">${isAditya ? '💙' : '💗'}</div>
+    <div class="bubble-content">
+      <div class="bubble-name">${msg.user}</div>
+      ${msg.text ? `<div class="bubble-text">${escapeHtml(msg.text)}</div>` : ''}
+      ${mediaHtml}
+      <div class="bubble-time">${msg.time}</div>
+    </div>
+  `;
+  container.appendChild(bubble);
+}
+
+function escapeHtml(text) {
+  return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function scrollToBottom() {
+  const c = document.getElementById('chatMessages');
+  c.scrollTop = c.scrollHeight;
+}
+
+function handleChatKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendChatMsg();
+  }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+// ============================================================
+// OUR SONG
+// ============================================================
+function setSong() {
+  const url = document.getElementById('songUrl').value.trim();
+  if (!url) return;
+  // Extract YouTube video ID
+  const match = url.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
+  if (!match) { alert('Please paste a valid YouTube link.'); return; }
+  const videoId = match[1];
+  localStorage.setItem('at_song', videoId);
+  renderSong(videoId);
+}
+
+function renderSong(videoId) {
+  const player = document.getElementById('songPlayer');
+  if (!player) return;
+  player.innerHTML = `
+    <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:14px;overflow:hidden;box-shadow:0 0 40px rgba(232,117,138,0.2);">
+      <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" 
+        src="https://www.youtube.com/embed/${videoId}?autoplay=0&loop=1&playlist=${videoId}" 
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+      </iframe>
+    </div>`;
+}
+
+function loadSong() {
+  const saved = localStorage.getItem('at_song');
+  if (saved) {
+    renderSong(saved);
+    const input = document.getElementById('songUrl');
+    if (input) input.value = 'https://www.youtube.com/watch?v=' + saved;
+  }
+}
+
+// ============================================================
+// NAV MENU
+// ============================================================
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// Close menu on outside click
+document.addEventListener('click', e => {
+  const nav = document.getElementById('navLinks');
+  const hamburger = document.getElementById('hamburger');
+  if (nav && hamburger && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+    nav.classList.remove('open');
+  }
+});
+
+// ============================================================
+// ACTIVE NAV LINK
+// ============================================================
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
