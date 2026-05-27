@@ -186,6 +186,22 @@
   }
   .lock-error.show { opacity: 1; }
 
+  .eye-btn {
+    position: absolute;
+    right: 14px; top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(249,232,236,0.4);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+    line-height: 1;
+  }
+  .eye-btn:hover { color: var(--rose); }
+
+
   .shake { animation: shake 0.5s ease; }
   @keyframes shake {
     0%,100% { transform: translateX(0); }
@@ -1299,6 +1315,54 @@
     padding: 4px 0;
   }
 
+
+  /* ── MUSIC PLAYER ── */
+  .playlist-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,117,138,0.15);
+    border-radius: 18px;
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+  }
+  .playlist-card:hover {
+    border-color: rgba(232,117,138,0.5);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(232,117,138,0.15);
+  }
+  .playlist-emoji { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+  .playlist-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--blush);
+    margin-bottom: 6px;
+  }
+  .playlist-count { font-size: 0.8rem; color: rgba(249,232,236,0.35); }
+  .song-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,117,138,0.1);
+    border-radius: 14px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .song-row:hover, .song-row.playing {
+    border-color: rgba(232,117,138,0.4);
+    background: rgba(232,117,138,0.08);
+  }
+  .song-num { width: 24px; text-align: center; font-size: 0.85rem; color: rgba(249,232,236,0.3); flex-shrink: 0; }
+  .song-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .song-info { flex: 1; min-width: 0; }
+  .song-title { font-size: 0.95rem; color: var(--blush); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .song-duration { font-size: 0.75rem; color: rgba(249,232,236,0.35); }
+  .song-delete { background: none; border: none; color: rgba(249,232,236,0.25); font-size: 1rem; cursor: pointer; padding: 4px 8px; transition: color 0.2s; flex-shrink: 0; }
+  .song-delete:hover { color: #ff6b6b; }
+
   /* ============ FOOTER ============ */
   footer {
     padding: 60px 40px;
@@ -1371,8 +1435,9 @@
     <span class="lock-heart">💗</span>
     <div class="lock-title">Aditya ❤️ Taniya</div>
     <div class="lock-sub">Private Space · Enter to Enter</div>
-    <div class="lock-input-wrap">
+    <div class="lock-input-wrap" style="position:relative;">
       <input type="password" id="passwordInput" placeholder="Enter our secret password..." autocomplete="off">
+      <button class="eye-btn" onclick="togglePasswordVisibility()" id="eyeBtn" title="Show/hide password">👁️</button>
     </div>
     <button class="lock-btn" onclick="checkPassword()">Open Our World ❤️</button>
     <div class="lock-error" id="lockError">Wrong password, my love 💔</div>
@@ -1700,28 +1765,91 @@
 
 
   <!-- ============ OUR SONG ============ -->
-  <section id="song" style="background:radial-gradient(ellipse at 50% 50%, #0a1510 0%, #0d0208 60%);text-align:center;">
+  <!-- ============ MUSIC PLAYER ============ -->
+  <section id="song" style="background:radial-gradient(ellipse at 50% 50%, #0a1510 0%, #0d0208 60%);">
     <div class="section-header reveal">
-      <span class="section-tag">The Song That Is Ours</span>
-      <h2 class="section-title">Our Song 🎵</h2>
-      <p class="section-sub">The song that plays in the background of every memory.</p>
+      <span class="section-tag">Just For Us</span>
+      <h2 class="section-title">Our Music 🎵</h2>
+      <p class="section-sub">Our playlists, our songs, our soundtrack.</p>
       <div class="section-divider"></div>
     </div>
-    <div class="reveal" style="max-width:600px;margin:0 auto;">
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(232,117,138,0.2);border-radius:20px;padding:40px 30px;">
-        <div style="font-size:3rem;margin-bottom:20px;">🎵</div>
-        <p style="font-family:'Dancing Script',cursive;font-size:1.5rem;color:var(--blush);margin-bottom:16px;">Add Your Song</p>
-        <p style="color:rgba(249,232,236,0.5);font-size:0.95rem;line-height:1.8;margin-bottom:24px;">
-          To add your special song, paste a YouTube link below and it will play here forever.
-        </p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
-          <input id="songUrl" type="text" placeholder="Paste YouTube URL here..." 
-            style="flex:1;min-width:200px;padding:12px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(232,117,138,0.3);border-radius:10px;color:#f9e8ec;font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;">
-          <button onclick="setSong()" style="padding:12px 24px;background:linear-gradient(135deg,var(--wine),var(--rose));border:none;border-radius:10px;color:white;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:1px;">
-            Set Song ❤️
+
+    <div style="max-width:900px;margin:0 auto;">
+
+      <!-- Playlist list view -->
+      <div id="playlistView">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--blush);">🎶 My Playlists</h3>
+          <button onclick="openCreatePlaylist()" style="padding:10px 22px;background:linear-gradient(135deg,var(--wine),var(--rose));border:none;border-radius:50px;color:white;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:0.9rem;letter-spacing:1px;box-shadow:0 4px 15px rgba(232,117,138,0.3);">
+            + New Playlist
           </button>
         </div>
-        <div id="songPlayer" style="margin-top:28px;"></div>
+        <div id="playlistGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;"></div>
+        <div id="playlistEmpty" style="text-align:center;padding:60px 20px;color:rgba(249,232,236,0.3);font-style:italic;">
+          No playlists yet — create your first one! 🎵
+        </div>
+      </div>
+
+      <!-- Create playlist modal -->
+      <div id="createPlaylistModal" style="display:none;position:fixed;inset:0;z-index:8000;background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);align-items:center;justify-content:center;">
+        <div style="background:rgba(20,5,12,0.98);border:1px solid rgba(232,117,138,0.3);border-radius:24px;padding:40px;width:min(460px,90vw);box-shadow:0 0 60px rgba(232,117,138,0.15);">
+          <h3 style="font-family:'Playfair Display',serif;color:var(--blush);margin-bottom:24px;font-size:1.4rem;">Create New Playlist</h3>
+          <input id="newPlaylistName" type="text" placeholder="e.g. Romantic Songs, Favourites..." maxlength="40"
+            style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(232,117,138,0.3);border-radius:12px;color:#f9e8ec;font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;margin-bottom:12px;">
+          <input id="newPlaylistEmoji" type="text" placeholder="Pick an emoji (e.g. 💕 🎶 🌙)" maxlength="4"
+            style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.06);border:1px solid rgba(232,117,138,0.3);border-radius:12px;color:#f9e8ec;font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;margin-bottom:20px;">
+          <div style="display:flex;gap:10px;">
+            <button onclick="createPlaylist()" style="flex:1;padding:13px;background:linear-gradient(135deg,var(--wine),var(--rose));border:none;border-radius:12px;color:white;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1rem;">Create ❤️</button>
+            <button onclick="closeCreatePlaylist()" style="padding:13px 20px;background:rgba(255,255,255,0.06);border:1px solid rgba(232,117,138,0.2);border-radius:12px;color:rgba(249,232,236,0.6);cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1rem;">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inside playlist view -->
+      <div id="insidePlaylistView" style="display:none;">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;flex-wrap:wrap;">
+          <button onclick="backToPlaylists()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(232,117,138,0.2);border-radius:50px;color:rgba(249,232,236,0.7);padding:8px 20px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:0.9rem;">← Back</button>
+          <h3 id="currentPlaylistTitle" style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--blush);"></h3>
+          <button onclick="deletePlaylist()" style="margin-left:auto;background:rgba(255,60,60,0.1);border:1px solid rgba(255,60,60,0.2);border-radius:50px;color:rgba(255,100,100,0.7);padding:8px 16px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:0.8rem;">🗑 Delete Playlist</button>
+        </div>
+
+        <!-- Add song row -->
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(232,117,138,0.15);border-radius:16px;padding:20px 24px;margin-bottom:24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+          <input type="file" id="songFileInput" accept="audio/*" multiple onchange="addSongsToPlaylist(event)" style="display:none">
+          <span style="color:rgba(249,232,236,0.5);font-size:0.9rem;flex:1;min-width:140px;">Add songs from your device:</span>
+          <button onclick="document.getElementById('songFileInput').click()" style="padding:10px 22px;background:linear-gradient(135deg,var(--wine),var(--rose));border:none;border-radius:50px;color:white;cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:0.9rem;white-space:nowrap;">
+            + Upload Songs
+          </button>
+        </div>
+
+        <!-- Song list -->
+        <div id="songList" style="display:flex;flex-direction:column;gap:10px;margin-bottom:32px;"></div>
+        <div id="songListEmpty" style="text-align:center;padding:40px;color:rgba(249,232,236,0.3);font-style:italic;">No songs yet — upload your first song! 🎵</div>
+
+        <!-- Mini player -->
+        <div id="miniPlayer" style="display:none;position:sticky;bottom:20px;background:rgba(15,3,9,0.97);border:1px solid rgba(232,117,138,0.3);border-radius:20px;padding:16px 24px;box-shadow:0 8px 40px rgba(232,117,138,0.2);backdrop-filter:blur(20px);">
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <div style="font-size:1.8rem;">🎵</div>
+            <div style="flex:1;min-width:100px;">
+              <div id="playerSongName" style="font-family:'Playfair Display',serif;color:var(--blush);font-size:0.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;"></div>
+              <div style="font-size:0.75rem;color:rgba(249,232,236,0.4);margin-top:2px;">Now Playing</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:center;">
+              <button onclick="prevSong()" style="background:none;border:none;color:rgba(249,232,236,0.6);font-size:1.3rem;cursor:pointer;padding:6px;">⏮</button>
+              <button onclick="togglePlay()" id="playPauseBtn" style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--wine),var(--rose));border:none;color:white;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(232,117,138,0.4);">▶</button>
+              <button onclick="nextSong()" style="background:none;border:none;color:rgba(249,232,236,0.6);font-size:1.3rem;cursor:pointer;padding:6px;">⏭</button>
+            </div>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.8" oninput="setVolume(this.value)"
+              style="width:80px;accent-color:var(--rose);">
+          </div>
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center;">
+            <span id="currentTime" style="font-size:0.75rem;color:rgba(249,232,236,0.4);min-width:35px;">0:00</span>
+            <input type="range" id="progressBar" min="0" max="100" value="0" oninput="seekSong(this.value)"
+              style="flex:1;accent-color:var(--rose);height:4px;">
+            <span id="totalTime" style="font-size:0.75rem;color:rgba(249,232,236,0.4);min-width:35px;">0:00</span>
+          </div>
+        </div>
+        <audio id="audioPlayer" onended="nextSong()" ontimeupdate="updateProgress()" onloadedmetadata="updateDuration()"></audio>
       </div>
     </div>
   </section>
@@ -1805,6 +1933,18 @@ function checkPassword() {
     setTimeout(() => { card.classList.remove('shake'); }, 600);
     setTimeout(() => { err.classList.remove('show'); }, 3000);
     document.getElementById('passwordInput').value = '';
+  }
+}
+
+function togglePasswordVisibility() {
+  const inp = document.getElementById('passwordInput');
+  const btn = document.getElementById('eyeBtn');
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    inp.type = 'password';
+    btn.textContent = '👁️';
   }
 }
 
@@ -2388,37 +2528,242 @@ function autoResize(el) {
 // ============================================================
 // OUR SONG
 // ============================================================
-function setSong() {
-  const url = document.getElementById('songUrl').value.trim();
-  if (!url) return;
-  // Extract YouTube video ID
-  const match = url.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/);
-  if (!match) { alert('Please paste a valid YouTube link.'); return; }
-  const videoId = match[1];
-  localStorage.setItem('at_song', videoId);
-  renderSong(videoId);
-}
+// ============================================================
+// MUSIC PLAYER
+// ============================================================
+let playlists = [];          // [{id, name, emoji, songs:[{name,url,duration}]}]
+let currentPlaylistId = null;
+let currentSongIdx = -1;
+let isPlaying = false;
+const audio = () => document.getElementById('audioPlayer');
 
-function renderSong(videoId) {
-  const player = document.getElementById('songPlayer');
-  if (!player) return;
-  player.innerHTML = `
-    <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:14px;overflow:hidden;box-shadow:0 0 40px rgba(232,117,138,0.2);">
-      <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" 
-        src="https://www.youtube.com/embed/${videoId}?autoplay=0&loop=1&playlist=${videoId}" 
-        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-      </iframe>
-    </div>`;
+function savePlaylists() {
+  try {
+    // Save playlist metadata only (not blob URLs — those don't persist)
+    const toSave = playlists.map(p => ({ id: p.id, name: p.name, emoji: p.emoji, songs: p.songs.map(s => ({ name: s.name, duration: s.duration })) }));
+    localStorage.setItem('at_playlists', JSON.stringify(toSave));
+  } catch(e) {}
 }
 
 function loadSong() {
-  const saved = localStorage.getItem('at_song');
-  if (saved) {
-    renderSong(saved);
-    const input = document.getElementById('songUrl');
-    if (input) input.value = 'https://www.youtube.com/watch?v=' + saved;
-  }
+  try {
+    const saved = localStorage.getItem('at_playlists');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      playlists = parsed.map(p => ({ ...p, songs: p.songs.map(s => ({ ...s, url: null })) }));
+    }
+  } catch(e) {}
+  renderPlaylists();
 }
+
+function renderPlaylists() {
+  const grid = document.getElementById('playlistGrid');
+  const empty = document.getElementById('playlistEmpty');
+  if (!grid) return;
+  grid.innerHTML = '';
+  if (playlists.length === 0) {
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  playlists.forEach(pl => {
+    const card = document.createElement('div');
+    card.className = 'playlist-card reveal';
+    card.innerHTML = `
+      <span class="playlist-emoji">${pl.emoji || '🎵'}</span>
+      <div class="playlist-name">${escapeHtml(pl.name)}</div>
+      <div class="playlist-count">${pl.songs.length} song${pl.songs.length !== 1 ? 's' : ''}</div>`;
+    card.onclick = () => openPlaylist(pl.id);
+    grid.appendChild(card);
+  });
+}
+
+function openCreatePlaylist() {
+  document.getElementById('createPlaylistModal').style.display = 'flex';
+  document.getElementById('newPlaylistName').focus();
+}
+function closeCreatePlaylist() {
+  document.getElementById('createPlaylistModal').style.display = 'none';
+  document.getElementById('newPlaylistName').value = '';
+  document.getElementById('newPlaylistEmoji').value = '';
+}
+
+function createPlaylist() {
+  const name = document.getElementById('newPlaylistName').value.trim();
+  const emoji = document.getElementById('newPlaylistEmoji').value.trim() || '🎵';
+  if (!name) { document.getElementById('newPlaylistName').focus(); return; }
+  const pl = { id: Date.now().toString(), name, emoji, songs: [] };
+  playlists.unshift(pl);
+  savePlaylists();
+  closeCreatePlaylist();
+  renderPlaylists();
+}
+
+function openPlaylist(id) {
+  currentPlaylistId = id;
+  const pl = playlists.find(p => p.id === id);
+  if (!pl) return;
+  document.getElementById('playlistView').style.display = 'none';
+  document.getElementById('insidePlaylistView').style.display = 'block';
+  document.getElementById('currentPlaylistTitle').textContent = pl.emoji + ' ' + pl.name;
+  renderSongList();
+}
+
+function backToPlaylists() {
+  document.getElementById('insidePlaylistView').style.display = 'none';
+  document.getElementById('playlistView').style.display = 'block';
+  stopPlayer();
+}
+
+function deletePlaylist() {
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  if (!pl) return;
+  if (!confirm('Delete playlist "' + pl.name + '"?')) return;
+  playlists = playlists.filter(p => p.id !== currentPlaylistId);
+  savePlaylists();
+  backToPlaylists();
+  renderPlaylists();
+}
+
+function addSongsToPlaylist(e) {
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  if (!pl) return;
+  Array.from(e.target.files).forEach(file => {
+    const url = URL.createObjectURL(file);
+    // Get duration
+    const tmpAudio = new Audio(url);
+    tmpAudio.addEventListener('loadedmetadata', () => {
+      const dur = formatTime(tmpAudio.duration);
+      pl.songs.push({ name: file.name.replace(/\.[^.]+$/, ''), url, duration: dur });
+      savePlaylists();
+      renderSongList();
+    });
+    tmpAudio.onerror = () => {
+      pl.songs.push({ name: file.name.replace(/\.[^.]+$/, ''), url, duration: '—' });
+      savePlaylists();
+      renderSongList();
+    };
+  });
+  e.target.value = '';
+}
+
+function renderSongList() {
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  const list = document.getElementById('songList');
+  const empty = document.getElementById('songListEmpty');
+  if (!pl || !list) return;
+  list.innerHTML = '';
+  if (pl.songs.length === 0) {
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  pl.songs.forEach((song, i) => {
+    const row = document.createElement('div');
+    row.className = 'song-row' + (i === currentSongIdx ? ' playing' : '');
+    row.id = 'song-row-' + i;
+    row.innerHTML = `
+      <span class="song-num">${i === currentSongIdx && isPlaying ? '▶' : (i + 1)}</span>
+      <span class="song-icon">🎵</span>
+      <div class="song-info">
+        <div class="song-title">${escapeHtml(song.name)}</div>
+        <div class="song-duration">${song.duration || '—'}</div>
+      </div>
+      <button class="song-delete" onclick="event.stopPropagation();deleteSong(${i})" title="Remove">✕</button>`;
+    row.addEventListener('click', () => playSong(i));
+    list.appendChild(row);
+  });
+}
+
+function playSong(idx) {
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  if (!pl || !pl.songs[idx]) return;
+  const song = pl.songs[idx];
+  if (!song.url) { alert('This song was uploaded in a previous session and needs to be re-uploaded (browser security limits).'); return; }
+  currentSongIdx = idx;
+  const a = audio();
+  a.src = song.url;
+  a.volume = document.getElementById('volumeSlider')?.value || 0.8;
+  a.play().then(() => {
+    isPlaying = true;
+    document.getElementById('playPauseBtn').textContent = '⏸';
+    document.getElementById('playerSongName').textContent = song.name;
+    document.getElementById('miniPlayer').style.display = 'block';
+    renderSongList();
+  }).catch(() => {});
+}
+
+function togglePlay() {
+  const a = audio();
+  if (!a.src) return;
+  if (isPlaying) { a.pause(); isPlaying = false; document.getElementById('playPauseBtn').textContent = '▶'; }
+  else { a.play(); isPlaying = true; document.getElementById('playPauseBtn').textContent = '⏸'; }
+}
+
+function nextSong() {
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  if (!pl) return;
+  const next = (currentSongIdx + 1) % pl.songs.length;
+  playSong(next);
+}
+
+function prevSong() {
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  if (!pl) return;
+  const prev = (currentSongIdx - 1 + pl.songs.length) % pl.songs.length;
+  playSong(prev);
+}
+
+function stopPlayer() {
+  const a = audio();
+  a.pause(); a.src = '';
+  isPlaying = false;
+  currentSongIdx = -1;
+  document.getElementById('miniPlayer').style.display = 'none';
+}
+
+function deleteSong(idx) {
+  const pl = playlists.find(p => p.id === currentPlaylistId);
+  if (!pl) return;
+  if (idx === currentSongIdx) stopPlayer();
+  pl.songs.splice(idx, 1);
+  if (currentSongIdx > idx) currentSongIdx--;
+  savePlaylists();
+  renderSongList();
+}
+
+function setVolume(v) { const a = audio(); if (a) a.volume = v; }
+
+function seekSong(v) { const a = audio(); if (a && a.duration) a.currentTime = (v / 100) * a.duration; }
+
+function updateProgress() {
+  const a = audio();
+  if (!a || !a.duration) return;
+  const pct = (a.currentTime / a.duration) * 100;
+  const bar = document.getElementById('progressBar');
+  if (bar) bar.value = pct;
+  const ct = document.getElementById('currentTime');
+  if (ct) ct.textContent = formatTime(a.currentTime);
+}
+
+function updateDuration() {
+  const a = audio();
+  const tt = document.getElementById('totalTime');
+  if (tt && a) tt.textContent = formatTime(a.duration);
+}
+
+function formatTime(s) {
+  if (!s || isNaN(s)) return '0:00';
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60).toString().padStart(2, '0');
+  return m + ':' + sec;
+}
+
+// Close create playlist modal on outside click
+document.addEventListener('click', e => {
+  const modal = document.getElementById('createPlaylistModal');
+  if (modal && e.target === modal) closeCreatePlaylist();
+});
 
 // ============================================================
 // NAV MENU
